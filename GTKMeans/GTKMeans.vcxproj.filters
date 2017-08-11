@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nfgsimpdiv.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\behav.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\behavitr.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\behavspt.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\dvector.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\file.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\game.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\integer.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\matrix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\mixed.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\pvector.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\rational.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\sqmatrix.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\stratitr.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\stratspt.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\subgame.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="libgambit\vector.cc">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GTKMeans.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nfgsimpdiv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\array.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\behav.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\behavitr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\behavspt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\dvector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\integer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\libgambit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\map.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\mixed.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\number.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\pvector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\rational.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\recarray.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\sqmatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\stratitr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\stratspt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\subgame.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="libgambit\vector.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GTKMeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libgambit\behav.imp" />
+    <None Include="libgambit\dvector.imp" />
+    <None Include="libgambit\matrix.imp" />
+    <None Include="libgambit\mixed.imp" />
+    <None Include="libgambit\pvector.imp" />
+    <None Include="libgambit\sqmatrix.imp" />
+    <None Include="libgambit\vector.imp" />
+  </ItemGroup>
+</Project>

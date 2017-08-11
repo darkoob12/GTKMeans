@@ -1,0 +1,319 @@
+//
+// This file is part of Gambit
+// Copyright (c) 1994-2010, The Gambit Project (http://www.gambit-project.org)
+//
+// FILE: src/libgambit/list.h
+// A generic (doubly) linked-list container class
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation; either version 2 of the License, or
+// (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write to the Free Software
+// Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+//
+
+#ifndef LIBGAMBIT_LIST_H
+#define LIBGAMBIT_LIST_H
+
+namespace Gambit {
+
+template <class T> class List {
+protected:
+  class Node {
+  public:
+    T m_data;
+    Node *m_prev, *m_next;
+    
+    // CONSTRUCTOR
+    Node(const T &p_data, Node *p_prev, Node *p_next);
+  };
+
+  int m_length;
+  Node *m_head, *m_tail;
+
+  int m_currentIndex;
+  Node *m_currentNode;
+
+  int InsertAt(const T &t, int where);
+
+public:
+  List(void);
+  List(const List<T> &);
+  virtual ~List();
+  
+  List<T> &operator=(const List<T> &);
+  
+  bool operator==(const List<T> &b) const;
+  bool operator!=(const List<T> &b) const;
+  
+  const T &operator[](int) const;
+  T &operator[](int);
+
+  List<T> operator+(const List<T>& b) const;
+  List<T>& operator+=(const List<T>& b);
+
+  virtual int Append(const T &);
+  int Insert(const T &, int);
+  virtual T Remove(int);
+
+  int Find(const T &) const;
+  bool Contains(const T &t) const;
+  int Length(void) const { return m_length; }
+};
+
+
+//--------------------------------------------------------------------------
+//                 Node: Member function implementations
+//--------------------------------------------------------------------------
+
+template <class T> 
+List<T>::Node::Node(const T &p_data,
+		    typename List<T>::Node *p_prev, typename List<T>::Node *p_next)
+  : m_data(p_data), m_prev(p_prev), m_next(p_next)
+{ }
+
+//--------------------------------------------------------------------------
+//                 List<T>: Member function implementations
+//--------------------------------------------------------------------------
+
+template <class T> List<T>::List(void) 
+  : m_length(0), m_head(0), m_tail(0), m_currentIndex(0), m_currentNode(0)
+{ }
+
+template <class T> List<T>::List(const List<T> &b)
+  : m_length(b.m_length)
+{
+  if (m_length)  {  
+    Node *n = b.m_head;
+    m_head = new Node(n->m_data, 0, 0);
+    n = n->m_next;
+    m_tail = m_head;
+    while (n)  { 
+      m_tail->m_next = new Node(n->m_data, m_tail, 0);
+      n = n->m_next;
+      m_tail = m_tail->m_next;
+    }
+    m_currentIndex = 1;
+    m_currentNode = m_head;
+  }
+  else  {
+    m_head = m_tail = 0;
+    m_currentIndex = 0;
+    m_currentNode = 0;
+  }
+}
+
+template <class T> List<T>::~List()
+{
+  Node *n = m_head;
+  while (n)  {
+    Node *m_next = n->m_next;
+    delete n;
+    n = m_next;
+  }
+}
+
+template <class T> int List<T>::InsertAt(const T &t, int num)
+{
+  if (num < 1 || num > m_length + 1)   throw IndexException();
+  
+  if (!m_length)  {
+    m_head = m_tail = new Node(t, 0, 0);
+    m_length = 1;
+    m_currentIndex = 1;
+    m_currentNode = m_head;
+    return m_length;
+  }
+
+  Node *n;
+  int i;
+  
+  if( num <= 1 )  {
+    n = new Node(t, 0, m_head);
+    m_head->m_prev = n;
+    m_currentNode = m_head = n;
+    m_currentIndex = 1;
+  }
+  else if( num >= m_length + 1)  {
+    n = new Node(t, m_tail, 0);
+    m_tail->m_next = n;
+    m_currentNode = m_tail = n;
+    m_currentIndex = m_length + 1;
+  }
+  else  {
+    if( num < m_currentIndex )
+      for (i = m_currentIndex, n = m_currentNode; i > num; i--, n = n->m_prev);
+    else
+      for (i = m_currentIndex, n = m_currentNode; i < num; i++, n = n->m_next);
+    n = new Node(t, n->m_prev, n);
+    m_currentNode = n->m_prev->m_next = n->m_next->m_prev = n;
+    m_currentIndex = num;
+  }
+
+  m_length++;
+  return num;
+}
+
+//--------------------- visible functions ------------------------
+
+template <class T> List<T> &List<T>::operator=(const List<T> &b)
+{
+  if (this != &b)   {
+    Node *n = m_head;
+    while (n) {
+      Node *m_next = n->m_next;
+      delete n;
+      n = m_next;
+    }
+
+    m_length = b.m_length;
+    m_currentIndex = b.m_currentIndex;
+    if (m_length)   {
+      Node *n = b.m_head;
+      m_head = new Node(n->m_data, 0, 0);
+      if (b.m_currentNode == n) m_currentNode = m_head;
+      n = n->m_next;
+      m_tail = m_head;
+      while (n)  {
+	m_tail->m_next = new Node(n->m_data, m_tail, 0);
+	if (b.m_currentNode == n) m_currentNode = m_tail->m_next;
+	n = n->m_next;
+	m_tail = m_tail->m_next;
+      }
+    }
+    else
+      m_head = m_tail = 0;
+  }
+  return *this;
+}
+
+template <class T> bool List<T>::operator==(const List<T> &b) const
+{
+  if (m_length != b.m_length) return false;
+  for (Node *m = m_head, *n = b.m_head; m; m = m->m_next, n = n->m_next)
+    if (m->m_data != n->m_data)  return false;
+  return true;
+}
+
+template <class T> bool List<T>::operator!=(const List<T> &b) const
+{
+  return !(*this == b);
+}
+
+template <class T> const T &List<T>::operator[](int num) const
+{
+  if (num < 1 || num > m_length)    throw IndexException();
+
+  int i;
+  Node *n;
+  if( num < m_currentIndex )
+    for (i = m_currentIndex, n = m_currentNode; i > num; i--, n = n->m_prev);
+  else
+    for (i = m_currentIndex, n = m_currentNode; i < num; i++, n = n->m_next);
+  return n->m_data;
+}
+
+template <class T> T &List<T>::operator[](int num)
+{
+  if (num < 1 || num > m_length)   throw IndexException();
+  Node *n;
+  int i;
+  if( num < m_currentIndex )
+    for (i = m_currentIndex, n = m_currentNode; i > num; i--, n = n->m_prev);
+  else
+    for (i = m_currentIndex, n = m_currentNode; i < num; i++, n = n->m_next);
+  m_currentIndex = i;
+  m_currentNode = n;
+  return n->m_data;
+}
+
+template <class T> List<T> List<T>::operator+(const List<T> &b) const
+{
+  List<T> result(*this);
+  Node *n = b.m_head;
+  while (n)  {
+    result.Append(n->data);
+    n = n->m_next;
+  }
+  return result;
+}
+
+template <class T> List<T> &List<T>::operator+=(const List<T> &b)
+{
+  Node *n = b.m_head;
+  
+  while (n)  {
+    Append(n->m_data);
+    n = n->m_next;
+  }
+  return *this;
+}
+
+template <class T> int List<T>::Append(const T &t)
+{
+  return InsertAt(t, m_length + 1);
+}
+
+template <class T> int List<T>::Insert(const T &t, int n)
+{
+  return InsertAt(t, (n < 1) ? 1 : ((n > m_length + 1) ? m_length + 1 : n));
+}
+
+template <class T> T List<T>::Remove(int num)
+{
+  if (num < 1 || num > m_length)   throw IndexException();
+  Node *n;
+  int i;
+
+  if( num < m_currentIndex )
+    for (i = m_currentIndex, n = m_currentNode; i > num; i--, n = n->m_prev);
+  else
+    for (i = m_currentIndex, n = m_currentNode; i < num; i++, n = n->m_next);
+
+  if (n->m_prev)
+    n->m_prev->m_next = n->m_next;
+  else
+    m_head = n->m_next;
+  if (n->m_next)
+    n->m_next->m_prev = n->m_prev;
+  else
+    m_tail = n->m_prev;
+
+  m_length--;
+  m_currentIndex = i;
+  m_currentNode = n->m_next;
+  if (m_currentIndex > m_length) {
+    m_currentIndex = m_length;
+    m_currentNode = m_tail;
+  }
+  T ret = n->m_data;
+  delete n;
+  return ret;
+}
+
+template <class T> int List<T>::Find(const T &t) const
+{
+  if (m_length == 0)  return 0;
+  Node *n = m_head;
+  for (int i = 1; n; i++, n = n->m_next)
+    if (n->m_data == t)   return i;
+  return 0;
+}
+
+template <class T> bool List<T>::Contains(const T &t) const
+{
+  return (Find(t) != 0);
+}
+
+}
+
+#endif // LIBGAMBIT_LIST_H
+

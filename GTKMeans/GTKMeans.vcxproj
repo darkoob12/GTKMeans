@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{0E0BE228-0E2B-49A8-8996-6499904FFD7A}</ProjectGuid>
+    <RootNamespace>GTKMeans</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>C:\Users\Shahab\Documents\HWS\Distributed AI\Projrct\gambit-0.2010.09.01\src\libgambit;D:\Boost\include\boost-1_50;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ReferencePath>C:\Users\Shahab\Documents\HWS\Distributed AI\Projrct\gambit-0.2010.09.01\src\libgambit;D:\Boost\lib\i386;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\Boost\include\boost-1_50;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ReferencePath>C:\Boost\lib\i386;$(ReferencePath)</ReferencePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+    </ClCompile>
+    <Link>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="GTKMeans.cpp" />
+    <ClCompile Include="libgambit\behav.cc" />
+    <ClCompile Include="libgambit\behavitr.cc" />
+    <ClCompile Include="libgambit\behavspt.cc" />
+    <ClCompile Include="libgambit\dvector.cc" />
+    <ClCompile Include="libgambit\file.cc" />
+    <ClCompile Include="libgambit\game.cc" />
+    <ClCompile Include="libgambit\integer.cc" />
+    <ClCompile Include="libgambit\matrix.cc" />
+    <ClCompile Include="libgambit\mixed.cc" />
+    <ClCompile Include="libgambit\pvector.cc" />
+    <ClCompile Include="libgambit\rational.cc" />
+    <ClCompile Include="libgambit\sqmatrix.cc" />
+    <ClCompile Include="libgambit\stratitr.cc" />
+    <ClCompile Include="libgambit\stratspt.cc" />
+    <ClCompile Include="libgambit\subgame.cc" />
+    <ClCompile Include="libgambit\vector.cc" />
+    <ClCompile Include="nfgsimpdiv.cc" />
+    <ClCompile Include="program.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GTKMeans.h" />
+    <ClInclude Include="libgambit\array.h" />
+    <ClInclude Include="libgambit\behav.h" />
+    <ClInclude Include="libgambit\behavitr.h" />
+    <ClInclude Include="libgambit\behavspt.h" />
+    <ClInclude Include="libgambit\dvector.h" />
+    <ClInclude Include="libgambit\game.h" />
+    <ClInclude Include="libgambit\integer.h" />
+    <ClInclude Include="libgambit\libgambit.h" />
+    <ClInclude Include="libgambit\list.h" />
+    <ClInclude Include="libgambit\map.h" />
+    <ClInclude Include="libgambit\matrix.h" />
+    <ClInclude Include="libgambit\mixed.h" />
+    <ClInclude Include="libgambit\number.h" />
+    <ClInclude Include="libgambit\pvector.h" />
+    <ClInclude Include="libgambit\rational.h" />
+    <ClInclude Include="libgambit\recarray.h" />
+    <ClInclude Include="libgambit\sqmatrix.h" />
+    <ClInclude Include="libgambit\stratitr.h" />
+    <ClInclude Include="libgambit\stratspt.h" />
+    <ClInclude Include="libgambit\subgame.h" />
+    <ClInclude Include="libgambit\vector.h" />
+    <ClInclude Include="nfgsimpdiv.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libgambit\behav.imp" />
+    <None Include="libgambit\dvector.imp" />
+    <None Include="libgambit\matrix.imp" />
+    <None Include="libgambit\mixed.imp" />
+    <None Include="libgambit\pvector.imp" />
+    <None Include="libgambit\sqmatrix.imp" />
+    <None Include="libgambit\vector.imp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
